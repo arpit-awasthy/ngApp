@@ -1,0 +1,20 @@
+<br>
+
+<input [formControl]="name" />
+
+<table>
+  <thead>
+    <tr>
+      <td> Title </td>
+    </tr>
+  </thead>
+  <tbody>
+    @for(data of postData$ | async; track data.id)  {
+      <tr>
+        <td> {{data.title}}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+------------------------
+<!-- {{(postData$ | async) | json}} -->

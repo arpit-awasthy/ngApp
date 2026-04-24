@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <td> Name </td>
+      <td> website </td>
+    </tr>
+  </thead>
+  <tbody>
+    @for(user of users$ | async; track user?.id) {
+      <tr>
+        <td> {{user.name}}</td>
+        <td> {{user.website}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

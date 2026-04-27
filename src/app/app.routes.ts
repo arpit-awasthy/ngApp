@@ -12,4 +12,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./http-call-component/http-call-component').then((c) => c.HttpCallComponent),
   },
+  {
+    path: 'reducer',
+    loadComponent: () =>
+      import('./reducer-component/reducer-component').then((c) => c.ReducerComponent),
+  },
 ];

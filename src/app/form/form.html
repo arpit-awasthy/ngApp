@@ -9,12 +9,16 @@
     </tr>
   </thead>
   <tbody>
-    @for(data of postData$ | async; track data.id)  {
-      <tr>
-        <td> {{data.title}}</td>
-      </tr>
+    @if(isArray(postData$ | async)) {
+        @for(data of postData$ | async; track data.id)  {
+        <tr>
+            <td> {{data.title}}</td>
+        </tr>
+        }
+    }   @else   {
+            <tr>
+                <td> {{(postData$ | async)?.title}}</td>
+            </tr>
     }
   </tbody>
 </table>
-------------------------
-<!-- {{(postData$ | async) | json}} -->

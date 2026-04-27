@@ -12,6 +12,8 @@ import { catchError, debounceTime, distinctUntilChanged, Observable, of, switchM
 })
 export class Form implements OnInit {
 
+  isArray = Array.isArray;
+
   private _httpClient = inject(HttpClient);
 
   name: FormControl = new FormControl('');
@@ -22,7 +24,7 @@ export class Form implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(it => this._httpClient.get<any>(`https://jsonplaceholder.typicode.com/posts/${it}`)),
-      catchError(() => of({}))
+      catchError(() => of([]))
     );
   }
 }

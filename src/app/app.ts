@@ -10,4 +10,21 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('ngApp');
+  
+  ngOnInit()  {
+    let value:unknown;
+
+    // value="hello";
+    // value=123;
+    // value=true;
+    value=undefined;
+
+    let x:unknown="hi";
+
+    // x.toUpperCase(); //
+  }
+}
+
+export interface Iclass {
+  schoolClass: number | string;
 }

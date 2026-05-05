@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+// import { validate } from '@angular/forms/signals';
 import { catchError, debounceTime, distinctUntilChanged, finalize, Observable, of, retry, shareReplay, single, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -10,7 +11,7 @@ import { catchError, debounceTime, distinctUntilChanged, finalize, Observable, o
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
-export class Form implements OnInit {
+export class Form {
 
   isArray = Array.isArray;
   isLoading = signal(false)
@@ -19,6 +20,15 @@ export class Form implements OnInit {
 
   search: FormControl = new FormControl('');
   postData$!: Observable<any>;
+
+  registration = new FormGroup({
+    name: new FormControl('Arpit', Validators.required),
+    age:  new FormControl(35, Validators.required),
+    uSkills: new FormArray([
+      new FormControl('Angular'),
+      new FormControl('NgRx')
+    ])
+  });
 
   ngOnInit(): void {
     this.postData$ = this.search.valueChanges.pipe(
@@ -34,5 +44,18 @@ export class Form implements OnInit {
       ),
       shareReplay(1)
     );
+
+    this.registration.get('name')?.valueChanges.subscribe((value: any) => {
+      console.log(value);
+    })
+  }
+
+  ngSubmit()  {
+    console.log(this.registration.valid, this.registration.value);
+  }
+
+  get skills() {
+    const fieldName: string = 'uSkills'
+    return this.registration.get(fieldName) as FormArray;
   }
 }

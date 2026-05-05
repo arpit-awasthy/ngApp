@@ -1,3 +1,15 @@
 <p>practice-component works!</p>
 
 {{age()}} -- {{ageUpdate()}}
+
+<!-- @for(ob of (obs$ | async); track ob)    {
+    <div> {{ob}}</div>
+} -->
+<br />
+{{(obs$ | async)}}
+
+<app-child-component 
+[name]="'Adhyayan'"
+(actionEmit)="outputEmitFromChild($event)">
+<h1>Title</h1>
+</app-child-component>

@@ -1,24 +1,45 @@
 <br>
 
-<input [formControl]="search" /> -- Loading: {{isLoading()}}
+<form [formGroup]="registration" (ngSubmit)="ngSubmit()">
 
-<table>
-  <thead>
-    <tr>
-      <td> Title </td>
-    </tr>
-  </thead>
-  <tbody>
-    @if(isArray(postData$ | async)) {
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name">
+  </div>
+
+
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Age</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="age">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Skill</label>
+    <div formArrayName="uSkills">
+       @for(field of skills.controls; track i; let i = $index)  {
+        <input type="text" class="form-control" [formControlName]="i">
+       }
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+
+<br>
+
+<input type="text" class="form-control" id="exampleFormControlInput1" [formControl]="search" >
+
+ <h1>Loading: {{isLoading()}} </h1>
+
+ <ul class="list-group">
+   @if(isArray(postData$ | async)) {
         @for(data of postData$ | async; track data.id)  {
-        <tr>
-            <td> {{data.title}}</td>
-        </tr>
+        <li class="list-group-item">{{data.title}}</li>
         }
     }   @else   {
-            <tr>
-                <td> {{(postData$ | async)?.title}}</td>
-            </tr>
+      <li class="list-group-item">{{(postData$ | async)?.title}}</li>
     }
-  </tbody>
-</table>
+  
+</ul>

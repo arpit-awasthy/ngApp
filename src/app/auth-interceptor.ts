@@ -4,8 +4,8 @@ import { catchError, throwError } from 'rxjs';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token: string = "12345";
   req = req.clone({
-    setHeaders: {authrorization: `breaer ${token}` }
-  })
+    setHeaders: {authrorization: `Bearer ${token}` }
+  });
   return next(req).pipe(catchError((error: HttpErrorResponse) => {
 
         if (error.status === 401) {

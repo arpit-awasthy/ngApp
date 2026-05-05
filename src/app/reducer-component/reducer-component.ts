@@ -7,9 +7,7 @@ import { createReducer, on, State } from '@ngrx/store';
   templateUrl: './reducer-component.html',
   styleUrl: './reducer-component.scss',
 })
-export class ReducerComponent {
-  
-}
+export class ReducerComponent {}
 
 // export interface State  {
 //   count: number;
@@ -21,28 +19,26 @@ export class ReducerComponent {
 
 // export const countReducer = createReducer(
 //   initialState,
-//   // on(increment, 
-//   //   state => {
-//   //   ...state,
-//   //   count: state.count + 1
-//   // }),
-//   // on(decrement, 
-//   //   state => {
-//   //     ...state,
-//   //     count: state.count - 1
-//   // }),
-//   // on(reset, 
-//   //   state => {
-//   //     ...state,
-//   //     count: 0
-//   //   })
+//   on(increment, (state) => ({
+//     ...state,
+//     count: state.count + 1,
+//   })),
+//   on(decrement, (state) => ({
+//     ...state,
+//     count: state.count - 1,
+//   })),
+//   on(reset, (state) => ({
+//     ...state,
+//     count: 0,
+//   })),
 // );
 
 // export const countReducer = createReducer(
-//   ...initialState,
-//   on(increment, State => {
+//   initialState,
+//   on(increment, State => ({
+//    ...state
 //     count: State.count + 1
-//   }),
+//   })),
 //   on(decrement, State => {
 //     count: State.count -1
 //   }),
